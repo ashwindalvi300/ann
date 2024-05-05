@@ -116,4 +116,81 @@ for ascii_val, prediction in zip(test_data, predictions):
 
 
 
+#### Perceptron Learning Law ####
+import numpy as np
+import pandas as pd 
+import matplotlib.pyplot as plt
+
+class Perceptron:
+    def __init__(self, lr=0.1, n_iter=100):
+        self.lr = lr
+        self.n_iter = n_iter
+        self.weights = None
+        self.bais = None
+        
+    def fit(self, x, y):
+        self.weights = np.zeros(x.shape[1])
+        self.bais = 1
+        
+        for i in range(self.n_iter):
+            for j in range(x.shape[0]):
+                pred = self.predict(x[j])
+                
+                if pred != y[j]:
+                    self.weights += self.lr * y[j] *x[j]
+                    self.bais += self.lr * y[j]
+                    
+    def predict(self, x):
+        output = np.dot(x, self.weights) + self.bais
+        return np.where(output >= 0, 1, -1)
+
+x = np.array([[2,2], [4,4], [4,0], [3,2], [8,4], [8,0]])
+y = np.array([1, 1, -1, 1, -1, -1])
+
+model = Perceptron()
+model.fit(x, y)
+
+plt.scatter(x[:, 0], x[:, 1], c=y)
+plt.xlim(0, 10)
+plt.ylim(0, 5)
+x1 = np.linspace(0, 10)
+x2 = -(model.weights[0]*x1 + model.bais)/model.weights[1]
+plt.plot(x1, x2, '-r')
+plt.show()
+
+
+
+#### BAM ####
+import numpy as np
+import pandas as pd
+import matplotlib as plt 
+
+x1 = np.array([1, 1, 1, 0, 0])
+x2 = np.array([0, 0, 1, 1, 1])
+y1 = np.array([1, 0, 0])
+y2 = np.array([0, 1, 0])
+
+w = np.zeros((len(x1), len(y1)))
+for i in range (len(x1)):
+    for j in range (len(y1)):
+        w[i][j] = x1[j] * y1[j] + x2[i] * y2[j]
+        
+        
+def BAM(input_vector):
+    output_vector = np.zeros(len(y1))
+    for j in range (len(y1)):
+        sum = 0 
+        for i in range (len(x1)):
+            sum += input_vector[i] * w[i][j]
+            output_vector[j] = sum
+            return output_vector
+        
+input_vector = x1
+output_vector = BAM(input_vector)
+print('Input vector = ', input_vector)
+print('Output vector = ', output_vector)
+    
+
+
+
 
