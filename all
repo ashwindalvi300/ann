@@ -1,0 +1,119 @@
+#### Activation Function ####
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def plot_sigmoid():
+    x = np.linspace(-10, 10, 100)
+    y = 1/(1 + np.exp(-x))
+    
+    plt.plot(x, y)
+    plt.xlabel('Input')
+    plt.ylabel('Sigmoid Output')
+    plt.title('Sigmoid Activation Function')
+    plt.grid(True)
+    plt.show()
+    
+plot_sigmoid()
+
+def plot_tanh():
+    x = np.linspace(-10,10,100)
+    y = np.tanh(x)
+    
+    plt.plot(x,y)
+    plt.xlabel('Input')
+    plt.ylabel('tanh Output')
+    plt.title('Hyperbolic Tangent Activation Function')
+    plt.grid(True)
+    plt.show()
+    
+plot_tanh()
+
+def plot_relu():
+    x = np.linspace(-10,10,100)
+    y = np.maximum(0,x)
+    
+    plt.plot(x,y)
+    plt.xlabel('Input')
+    plt.ylabel('Relu Output')
+    plt.title('relu Activation Fucntion')
+    plt.grid()
+    plt.show()
+    
+plot_relu()
+
+
+
+#### McCullochPitts ####
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+class McCullochPitts:
+    def __init__(self, input_size):
+        self.weights = np.zeros(input_size)
+        self.bais = 0
+        
+    def predict(self, inputs):
+        linear_combination = np.dot(self.weights, inputs) + self.bais
+        return 1 if linear_combination >= 0 else 0
+    
+    
+
+inputs = np.array([[0,0], [0,1], [1,0], [1,1]])
+expected_outputs = np.array([0, 0, 1, 0])
+
+neural_network = McCullochPitts(2)
+
+learning_rate = 0.1
+epochs = 10
+for epoch in range(epochs):
+    for input, expected_output in zip(inputs, expected_outputs):
+        prediction  = neural_network.predict(input)
+        error = expected_output - prediction
+        neural_network.weights += learning_rate * error * input
+        neural_network.bais +=learning_rate * error
+        
+for input in inputs:
+    print(f'Inputs : {input}')
+    if neural_network.predict(input) == 1:
+        print('ANDNOT output : True')
+    else:
+        print('ANDNOT output : False')
+
+
+
+
+#### ASCII ####
+
+import numpy as np
+import pandas as pd
+
+training_data = np.array([[48, 0],
+                        [49, 1], 
+                        [50, 0],
+                        [51, 1],
+                        [52, 0],
+                        [53, 1], 
+                        [54, 0],
+                        [55, 1],
+                        [56, 0],
+                        [57, 1]])
+
+x = training_data[:,0].reshape(-1,1)
+y = training_data[:,1]
+
+perceptron = np.where(np.sum(x, axis=1) % 2 == 0, 0, 1)
+
+test_data = np.array([48, 49, 50, 51, 52, 53, 54, 55, 56, 57])
+predictions = np.where(np.sum(test_data.reshape(-1,1), axis=1) % 2 == 0, 0, 1)
+
+for ascii_val, prediction in zip(test_data, predictions):
+    number = chr(ascii_val)
+    parity = 'even' if prediction == 0 else 'odd'
+    print(f"Number : {number}, ASCII value : {ascii_val}, Output : {parity}")
+
+
+
+
