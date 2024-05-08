@@ -44,6 +44,21 @@ def plot_relu():
 plot_relu()
 
 
+def plot_softmax(probabilities, class_labels):
+    plt.bar(class_labels, probabilities)
+    plt.xlabel("Class")
+    plt.ylabel("Probability")
+    plt.title("Softmax Output")
+    plt.show()
+
+# Example usage:
+class_labels = ["Class A", "Class B", "Class C"]
+probabilities = np.array([0.2, 0.3, 0.5])
+plot_softmax(probabilities, class_labels)
+
+
+
+
 
 ######################## McCullochPitts #####################################
 
