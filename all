@@ -1,4 +1,4 @@
-#### Activation Function ####
+############################ Activation Function #####################################
 
 import numpy as np
 import pandas as pd
@@ -45,7 +45,7 @@ plot_relu()
 
 
 
-#### McCullochPitts ####
+######################## McCullochPitts #####################################
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -85,7 +85,7 @@ for input in inputs:
 
 
 
-#### ASCII ####
+############################ ASCII ###########################################
 
 import numpy as np
 import pandas as pd
@@ -116,7 +116,8 @@ for ascii_val, prediction in zip(test_data, predictions):
 
 
 
-#### Perceptron Learning Law ####
+########################### Perceptron Learning Law ########################################
+
 import numpy as np
 import pandas as pd 
 import matplotlib.pyplot as plt
@@ -160,7 +161,8 @@ plt.show()
 
 
 
-#### BAM ####
+############################ BAM ###############################
+
 import numpy as np
 import pandas as pd
 import matplotlib as plt 
@@ -192,7 +194,7 @@ print('Output vector = ', output_vector)
     
 
 
-#### ART ####
+############################## ART #######################################
 
 import numpy as np
 import pandas as pd
@@ -242,7 +244,7 @@ if __name__ == '__main__':
 
 
 
-#### Hopfield Network ####
+######################### Hopfield Network ###############################
 
 import numpy as np
 
@@ -275,7 +277,7 @@ print('Output vector', output_vector)
 w
 
 
-#### Logistic REgression ####
+########################## Logistic Regression ######################################
 
 import tensorflow as tf
 import numpy as np
@@ -305,7 +307,7 @@ print('Accuracy is ', test_accuracy)
 
 
 
-#### CNN ####
+################################ CNN ###################################
 
 import tensorflow as tf
 from tensorflow.keras.datasets import mnist
