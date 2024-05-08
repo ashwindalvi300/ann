@@ -73,6 +73,7 @@ class McCullochPitts:
         
     def predict(self, inputs):
         linear_combination = np.dot(self.weights, inputs) + self.bais
+        # here we apply threshold activation function
         return 1 if linear_combination >= 0 else 0
     
     
